@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.hero-pattern {
+  background-image: url('https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.hero-pattern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.cat-pattern {
+  background-image: url('https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&q=80');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.cat-pattern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.hero-section {
+  position: relative;
+  background-color: #000;
+}
+
+.hero-section img {
+  transition: transform 10s ease;
+}
+
+.hero-section:hover img {
+  transform: scale(1.1);
+}
+
+@layer utilities {
+  .aspect-w-4 {
+    position: relative;
+    padding-bottom: calc(var(--tw-aspect-h) / var(--tw-aspect-w) * 100%);
+  }
+  
+  .aspect-h-3 {
+    --tw-aspect-h: 3;
+    --tw-aspect-w: 4;
+  }
+}
