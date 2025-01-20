@@ -16,14 +16,9 @@ import {
   IonSelect,
   IonSelectOption,
   IonContent,
-  IonText,
+  IonText
 } from '@ionic/react';
-import {
-  chevronBack,
-  chevronForward,
-  searchOutline,
-  pawOutline,
-} from 'ionicons/icons';
+import { chevronBack, chevronForward, searchOutline, pawOutline } from 'ionicons/icons';
 
 interface CatBreed {
   breed: string;
@@ -56,7 +51,7 @@ function CatBreedsList() {
     }
   };
 
-  const filteredBreeds = breeds.filter((breed) =>
+  const filteredBreeds = breeds.filter(breed =>
     breed.breed.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -70,34 +65,29 @@ function CatBreedsList() {
       {/* Featured Cats Section */}
       <div className="py-12 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-8">
-            Featured Cat Breeds
-          </h2>
+          <h2 className="text-3xl font-bold text-center mb-8">Featured Cat Breeds</h2>
           <IonGrid>
             <IonRow>
               {[
                 {
-                  image:
-                    'https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&fit=crop&q=80',
+                  image: 'https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&fit=crop&q=80&w=800&h=600',
                   breed: 'Persian',
-                  description: 'Known for their long fur and calm personality',
+                  description: 'Known for their long fur and calm personality'
                 },
                 {
-                  image:
-                    'https://images.unsplash.com/photo-1513245543132-31f507417b26?auto=format&fit=crop&q=80',
+                  image: 'https://images.unsplash.com/photo-1513245543132-31f507417b26?auto=format&fit=crop&q=80&w=800&h=600',
                   breed: 'Siamese',
-                  description: 'Distinctive markings and vocal personality',
+                  description: 'Distinctive markings and vocal personality'
                 },
                 {
-                  image:
-                    'https://images.unsplash.com/photo-1533743983669-94fa5c4338ec?auto=format&fit=crop&q=80',
+                  image: 'https://images.unsplash.com/photo-1533743983669-94fa5c4338ec?auto=format&fit=crop&q=80&w=800&h=600',
                   breed: 'Maine Coon',
-                  description: 'Large, gentle giants with luxurious fur',
-                },
+                  description: 'Large, gentle giants with luxurious fur'
+                }
               ].map((cat, index) => (
                 <IonCol size="12" sizeMd="4" key={index}>
-                  <IonCard className="overflow-hidden">
-                    <div className="aspect-w-4 aspect-h-3 w-full h-64">
+                  <IonCard className="h-full">
+                    <div className="relative h-[300px] overflow-hidden">
                       <img
                         src={cat.image}
                         alt={cat.breed}
@@ -105,9 +95,7 @@ function CatBreedsList() {
                       />
                     </div>
                     <IonCardHeader>
-                      <IonCardTitle className="text-xl font-bold">
-                        {cat.breed}
-                      </IonCardTitle>
+                      <IonCardTitle className="text-xl font-bold">{cat.breed}</IonCardTitle>
                       <p className="mt-2 text-gray-600">{cat.description}</p>
                     </IonCardHeader>
                   </IonCard>
@@ -125,13 +113,9 @@ function CatBreedsList() {
             <IonCardHeader>
               <div className="flex items-center justify-center gap-2 mb-4">
                 <IonIcon icon={pawOutline} className="text-2xl text-primary" />
-                <IonCardTitle className="text-2xl font-bold text-center">
-                  Cat Breeds Directory
-                </IonCardTitle>
+                <IonCardTitle className="text-2xl font-bold text-center">Cat Breeds Directory</IonCardTitle>
               </div>
-              <p className="text-center mt-2 text-gray-600">
-                Find detailed information about different cat breeds
-              </p>
+              <p className="text-center mt-2 text-gray-600">Find detailed information about different cat breeds</p>
             </IonCardHeader>
 
             <div className="ion-padding">
@@ -140,7 +124,7 @@ function CatBreedsList() {
                   <IonCol size="12" sizeMd="8">
                     <IonSearchbar
                       value={searchTerm}
-                      onIonInput={(e) => setSearchTerm(e.detail.value!)}
+                      onIonInput={e => setSearchTerm(e.detail.value!)}
                       placeholder="Search breeds..."
                       className="ion-no-padding"
                     />
@@ -150,7 +134,7 @@ function CatBreedsList() {
                       <IonLabel>Items per page</IonLabel>
                       <IonSelect
                         value={itemsPerPage}
-                        onIonChange={(e) => {
+                        onIonChange={e => {
                           setItemsPerPage(e.detail.value);
                           setCurrentPage(1);
                         }}
@@ -181,10 +165,7 @@ function CatBreedsList() {
                     </IonRow>
 
                     {currentBreeds.map((breed, index) => (
-                      <IonRow
-                        key={index}
-                        className="ion-align-items-center ion-margin-top hover:bg-gray-50 rounded-lg p-2"
-                      >
+                      <IonRow key={index} className="ion-align-items-center ion-margin-top hover:bg-gray-50 rounded-lg p-2">
                         <IonCol>
                           <strong className="ion-hide-md-up">Breed: </strong>
                           {breed.breed}
@@ -212,9 +193,7 @@ function CatBreedsList() {
                       <IonCol size="12" className="ion-text-center">
                         <IonButton
                           fill="clear"
-                          onClick={() =>
-                            setCurrentPage((prev) => Math.max(prev - 1, 1))
-                          }
+                          onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                           disabled={currentPage === 1}
                         >
                           <IonIcon icon={chevronBack} slot="icon-only" />
@@ -224,11 +203,7 @@ function CatBreedsList() {
                         </span>
                         <IonButton
                           fill="clear"
-                          onClick={() =>
-                            setCurrentPage((prev) =>
-                              Math.min(prev + 1, totalPages)
-                            )
-                          }
+                          onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                           disabled={currentPage === totalPages}
                         >
                           <IonIcon icon={chevronForward} slot="icon-only" />
